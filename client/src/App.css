@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  background: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ql-container {
+  min-height: 500px;
+  background: white;
+  font-size: 18px;
+}
+
+.ql-editor {
+  min-height: 500px;
+}
