@@ -49,12 +49,24 @@ io.on("connection", (socket) => {
 
     socket.emit("load-document", document.data);
 
+    // Multi-user editing
     socket.on("send-changes", (data) => {
       socket.broadcast.to(documentId).emit("receive-changes", data);
     });
 
+    // Autosave document
     socket.on("save-document", async (data) => {
       await Document.findByIdAndUpdate(documentId, { data });
+    });
+
+    // Live cursor tracking
+    socket.on("send-cursor", (cursorData) => {
+      socket.broadcast.to(documentId).emit("receive-cursor", {
+        userId: socket.id,
+        range: cursorData.range,
+        name: cursorData.name,
+        color: cursorData.color,
+      });
     });
   });
 
